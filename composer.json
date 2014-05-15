@@ -1,0 +1,33 @@
+{
+    "name": "katsuo-ryuu/kryuu-file-repository",
+    "description": "A Zend Framework 2 module for uploading files to a File Bank along with metadata, keywords and status information and a controller to offer saved files for download.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "zf2",
+        "filerepository"
+    ],
+    "homepage": "https://github.com/KatsuoRyuu/KRyuuFileRepository",
+    "authors": [
+        {
+            "name": "Anders Blenstrup-Pedersen",
+	    "email": "anders-github@drake-development.org",
+	    "homepage": "http://drake-development.org",
+	    "role": "Author"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*",
+        "doctrine/doctrine-orm-module": "~0.7"
+    },
+    "autoload": {
+        "psr-0": {
+            "FileLib": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}
