@@ -1,4 +1,6 @@
 <?php
+namespace FileRepository;
+
 return array(
     "FileRepository" => array(
         'params' => array(

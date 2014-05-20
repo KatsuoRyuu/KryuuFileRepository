@@ -235,8 +235,10 @@ class Manager
         
         $absolutePath = $this->params['filerepository_folder'] . $savePath . $hash;
         
+
+        $this->createPath($absolutePath, $this->params['chmod'], true);
+
         try {
-            $this->createPath($absolutePath, $this->params['chmod'], true);
             copy($sourceFilePath, $absolutePath);
         } catch (\Exception $e) {
             throw new \Exception('File cannot be saved.');
@@ -293,7 +295,7 @@ class Manager
         }
         
         if (!$success) {
-            throw new RuntimeException('Can\'t create filerepository storage folders');
+            throw new RuntimeException('Can\'t create filerepository storage folders: '.$path);
         }
     }
 }
