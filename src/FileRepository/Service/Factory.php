@@ -19,7 +19,6 @@ class Factory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator) {
         $config = $serviceLocator->get('config');
-        print_r($config);
         $params = $config['FileRepository']['params'];
         $em = $serviceLocator->get('doctrine.entitymanager.orm_default');
 
