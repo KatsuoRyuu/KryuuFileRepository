@@ -138,7 +138,7 @@ class Manager
      */
     public function getRoot() 
     {
-        return $this->params['filerepository_folder'];
+        return realpath($this->params['filerepository_folder']);
     }
     
     /**
@@ -214,9 +214,11 @@ class Manager
      * @return FileRepository\Entity\File
      * @throws \Exception 
      */
-    public function save($sourceFilePath, array $keywords = array())
+    public function save($sourceFilePath, $fileName = null, array $keywords = array())
     {
-        $fileName = basename($sourceFilePath);
+        if ($fileName == null) {
+            $fileName = basename($sourceFilePath);
+        }
         //$mimetype = mime_content_type($sourceFilePath);
         $mimetype = $this->getMimeType($sourceFilePath);
         $hash     = md5(microtime(true) . $fileName);
