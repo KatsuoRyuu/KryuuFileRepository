@@ -16,7 +16,7 @@ class FileController extends AbstractActionController
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
 
         $file = $filelib->getFileById($id);
-        $filePath = $filelib->getRoot() . $file->getSavePath();
+        $filePath = $filelib->getRoot() . '/' .$file->getSavePath();
 
         header('Content-Description: File Transfer');
         header('Content-Type: ' . $file->getMimetype());
