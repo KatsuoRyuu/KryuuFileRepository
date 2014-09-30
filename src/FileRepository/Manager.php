@@ -250,6 +250,30 @@ class Manager
     }
     
     /**
+     * Get the file entity based on ID
+     * 
+     * @param integer $fileId
+     * @return FileRepository\Entity\File 
+     * @throws \Exception 
+     */
+    
+    public function remove($fileId)
+    {
+        $entity = $this->em->find('FileRepository\Entity\File', $fileId);
+        
+        if (!$entity) {
+            throw new \Exception('File does not exist.', 404);
+        }
+        
+        
+        $file = $this->params['filerepository_folder'] . $entity->getSavePath();
+        unlink($file);
+        
+        $this->em->remove($entity);
+        $this->em->flush();
+    }
+    
+    /**
      * Attach keywords to file entity
      * 
      * @param array $keywords
