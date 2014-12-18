@@ -1,9 +1,9 @@
 <?php
 
-namespace FileRepository\Entity;
+namespace KryuuFileRepository\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use FileRepository\Entity\File;
+use KryuuFileRepository\Entity\File;
 
 /**
  * Keyword entity.
@@ -24,7 +24,7 @@ class Keyword
     protected $id;
     
     /**
-     * @ORM\ManyToOne(targetEntity="FileRepository\Entity\File", inversedBy="keywords")
+     * @ORM\ManyToOne(targetEntity="KryuuFileRepository\Entity\File", inversedBy="keywords")
      * @ORM\JoinColumn(name="fileid", referencedColumnName="id")
      * @var ArrayCollection
      */

@@ -1,15 +1,15 @@
 <?php
 
-namespace FileRepository\View\Helper;
+namespace KryuuFileRepository\View\Helper;
 
 use Zend\View\Helper\AbstractHelper;
 use Zend\Http\Request;
-use FileRepository\Entity\File;
+use KryuuFileRepository\Entity\File;
 
-class FileRepository extends AbstractHelper 
+class KryuuFileRepository extends AbstractHelper 
 {
     /**
-     * @var FileRepository Service
+     * @var KryuuFileRepository Service
      */
     protected $service;
 
@@ -22,7 +22,7 @@ class FileRepository extends AbstractHelper
      * Called upon invoke
      * 
      * @param integer $id
-     * @return FileRepository\Entity\File
+     * @return KryuuFileRepository\Entity\File
      */
     public function __invoke($id) {
         $file = $this->service->getFileById($id);
@@ -33,22 +33,22 @@ class FileRepository extends AbstractHelper
     /**
      * Add dynamic data into the entity
      * 
-     * @param FileRepository\Entity\File $file
+     * @param KryuuFileRepository\Entity\File $file
      * @param Array $linkOptions
-     * @return FileRepository\Entity\File
+     * @return KryuuFileRepository\Entity\File
      */
     private function generateDynamicParameters(File $file) {
         $urlHelper = $this->getView()->plugin('url');
 
         $file->setUrl(
-                $urlHelper('FileRepository') . '/' . $file->getId()
+                $urlHelper('KryuuFileRepository') . '/' . $file->getId()
         );
 
         return $file;
     }
 
     /**
-     * Get FileRepository service.
+     * Get KryuuFileRepository service.
      *
      * @return $this->service
      */
@@ -57,7 +57,7 @@ class FileRepository extends AbstractHelper
     }
 
     /**
-     * Set FileRepository service.
+     * Set KryuuFileRepository service.
      *
      * @param $service
      */
@@ -67,7 +67,7 @@ class FileRepository extends AbstractHelper
     }
 
     /**
-     * Get FileRepository params.
+     * Get KryuuFileRepository params.
      *
      * @return $this->params
      */
@@ -76,7 +76,7 @@ class FileRepository extends AbstractHelper
     }
 
     /**
-     * Set FileRepository params.
+     * Set KryuuFileRepository params.
      *
      * @param array $params
      */

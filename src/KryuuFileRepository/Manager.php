@@ -1,10 +1,10 @@
 <?php
 
-namespace FileRepository;
+namespace KryuuFileRepository;
 
-use FileRepository\Entity\File;
-use FileRepository\Entity\Keyword;
-use FileRepository\Exception\RuntimeException;
+use KryuuFileRepository\Entity\File;
+use KryuuFileRepository\Entity\Keyword;
+use KryuuFileRepository\Exception\RuntimeException;
 
 use Doctrine\ORM\Tools\SchemaValidator;
 
@@ -26,7 +26,7 @@ class Manager
     protected $cache;
     
     /**
-     * @var FileRepository\Entity\File
+     * @var KryuuFileRepository\Entity\File
      */
     protected $file;
     
@@ -98,10 +98,12 @@ class Manager
      * 
      * @param Array $params
      * @param Doctrine\ORM\EntityManager $em 
+     * @param \Zend\EventManager\EventManager $eventManager
      */
-    public function __construct($params, $em) {
+    public function __construct($params, $em, $eventManager) {
         $this->params = $params;
         $this->em = $em;
+        $this->eventManager = $eventManager;
         $this->cache = array();
     }
 
@@ -132,7 +134,7 @@ class Manager
     }
 
     /**
-     * Get the FileRepository's root folder
+     * Get the KryuuFileRepository's root folder
      * 
      * @return string 
      */
@@ -145,7 +147,7 @@ class Manager
      * Get the file entity based on ID
      * 
      * @param integer $fileId
-     * @return FileRepository\Entity\File 
+     * @return KryuuFileRepository\Entity\File 
      * @throws \Exception 
      */
     
@@ -155,7 +157,7 @@ class Manager
         if (isset($this->cache[$fileId])) {
             $entity = $this->cache[$fileId];
         } else {
-            $entity = $this->em->find('FileRepository\Entity\File', $fileId);
+            $entity = $this->em->find('KryuuFileRepository\Entity\File', $fileId);
         }
         
         if (!$entity) {
@@ -190,7 +192,7 @@ class Manager
             $list = "'" . implode("','", $keywords) . "'";
             
             $q = $this->em->createQuery(
-                    "select f from FileRepository\Entity\File f, FileRepository\Entity\Keyword k
+                    "select f from KryuuFileRepository\Entity\File f, KryuuFileRepository\Entity\Keyword k
                      where k.file = f
                      and k.value in (" . $list . ")"
                     );
@@ -207,11 +209,11 @@ class Manager
     }
     
     /**
-     * Save file to FileRepository database
+     * Save file to KryuuFileRepository database
      * 
      * @param string $sourceFilePath
      * @param array $keywords
-     * @return FileRepository\Entity\File
+     * @return KryuuFileRepository\Entity\File
      * @throws \Exception 
      */
     public function save($sourceFilePath, $fileName = null, array $keywords = array())
@@ -253,13 +255,13 @@ class Manager
      * Get the file entity based on ID
      * 
      * @param integer $fileId
-     * @return FileRepository\Entity\File 
+     * @return KryuuFileRepository\Entity\File 
      * @throws \Exception 
      */
     
     public function remove($fileId)
     {
-        $entity = $this->em->find('FileRepository\Entity\File', $fileId);
+        $entity = $this->em->find('KryuuFileRepository\Entity\File', $fileId);
         
         if (!$entity) {
             throw new \Exception('File does not exist.', 404);
@@ -277,7 +279,7 @@ class Manager
      * Attach keywords to file entity
      * 
      * @param array $keywords
-     * @return FileRepository\Entity\File 
+     * @return KryuuFileRepository\Entity\File 
      */
     protected function addKeywordsToFile(array $keywords) 
     {
@@ -306,7 +308,7 @@ class Manager
      * @param string $mode
      * @param boolean $isFileIncluded
      * 
-     * @throws FileRepository\Exception\RuntimeException
+     * @throws KryuuFileRepository\Exception\RuntimeException
      */
     protected function createPath($path, $mode, $isFileIncluded)
     {

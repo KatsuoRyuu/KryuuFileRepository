@@ -1,8 +1,8 @@
 <?php
 
-namespace FileRepository;
+namespace KryuuFileRepository;
 
-use FileRepository\View\Helper\FileRepository;
+use KryuuFileRepository\View\Helper\KryuuFileRepository;
 
 class Module
 {
@@ -24,7 +24,7 @@ class Module
     {
         return array(
             'factories' => array(
-                'FileRepository' => 'FileRepository\Service\Factory',
+                'FileRepository' => 'KryuuFileRepository\Service\Factory',
             )
         ); 
     }
@@ -41,10 +41,10 @@ class Module
                 'getFileById' => function ($sm) {
                     $locator = $sm->getServiceLocator();
                     $config = $locator->get('Configuration');
-                    $params = $config['FileRepository']['params'];
+                    $params = $config['KryuuFileRepository']['params'];
                     
-                    $viewHelper = new View\Helper\FileRepository();
-                    $viewHelper->setService($locator->get('FileRepository'));
+                    $viewHelper = new View\Helper\KryuuFileRepository();
+                    $viewHelper->setService($locator->get('KryuuFileRepository'));
                     $viewHelper->setParams($params);
                     
                     return $viewHelper;

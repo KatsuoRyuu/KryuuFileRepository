@@ -1,16 +1,16 @@
 <?php
 
-namespace FileRepository\Entity;
+namespace KryuuFileRepository\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use FileRepository\Entity\Keyword;
+use KryuuFileRepository\Entity\Keyword;
 
 /**
  * File entity.
  *
  * @ORM\Entity
- * @ORM\Table(name="filerepository")
+ * @ORM\Table(name="kryuu_file_repository")
  * @property int $id
  * @property string $name
  * @property int $size
@@ -62,7 +62,12 @@ class File
     protected $savepath;
 
     /**
-     * @ORM\OneToMany(targetEntity="FileRepository\Entity\Keyword", mappedBy="file", cascade={"all"})
+     * @ORM\Column(type="boolean")
+     */
+    protected $archive;
+
+    /**
+     * @ORM\OneToMany(targetEntity="KryuuFileRepository\Entity\Keyword", mappedBy="file", cascade={"all"})
      * @ORM\OrderBy({"id" = "ASC"})
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
@@ -210,7 +215,7 @@ class File
     {
         $this->keywords->clear();
         foreach ($keywords as $keyword) {
-            if ($keyword instanceof FileRepository\Entity\Keyword) {
+            if ($keyword instanceof KryuuFileRepository\Entity\Keyword) {
                 $this->keywords->add($keyword);
             }
         }

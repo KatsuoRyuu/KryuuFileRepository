@@ -1,6 +1,6 @@
 <?php
 
-namespace FileRepository\Controller;
+namespace KryuuFileRepository\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -8,7 +8,7 @@ use Zend\View\Model\ViewModel;
 class FileController extends AbstractActionController 
 {
     /**
-     * Get the file from FileRepository and offer it for download 
+     * Get the file from KryuuFileRepository and offer it for download 
      */
     public function downloadAction() 
     {

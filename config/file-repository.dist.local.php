@@ -1,12 +1,15 @@
 <?php
-namespace FileRepository;
+namespace KryuuFileRepository;
 
 return array(
-    "FileRepository" => array(
+    "KryuuFileRepository" => array(
         'params' => array(
             'filerepository_folder'  => './data/filerepository/',
             'default_is_active' => true,
             'chmod'           => 0755,
+            'plugins'           => array(
+                ''
+            )
         ),
     )
 );

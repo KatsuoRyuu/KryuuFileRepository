@@ -1,28 +1,28 @@
 <?php
 
-namespace FileRepository\Service;
+namespace KryuuFileRepository\Service;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use FileRepository\Manager;
+use KryuuFileRepository\Manager;
 
 /**
- * FileRepository service manager factory
+ * KryuuFileRepository service manager factory
  */
 class Factory implements FactoryInterface 
 {
     /**
-     * Factory method for FileRepository Manager service
+     * Factory method for KryuuFileRepository Manager service
      *
      * @param ServiceLocatorInterface $serviceLocator
-     * @return \FileRepository\Manager
+     * @return \KryuuFileRepository\Manager
      */
     public function createService(ServiceLocatorInterface $serviceLocator) {
         $config = $serviceLocator->get('config');
-        $params = $config['FileRepository']['params'];
+        $params = $config['KryuuFileRepository']['params'];
         $em = $serviceLocator->get('doctrine.entitymanager.orm_default');
-
-        $manager = new Manager($params, $em);
+        $eventManager = $e->getApplication()->getServiceManager()->get('EventManager');
+        $manager = new Manager($params, $em, $eventManager);
         return $manager;
     }
 }

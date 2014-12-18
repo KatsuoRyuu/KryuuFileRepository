@@ -1,6 +1,6 @@
 <?php
 
-namespace FileRepository;
+namespace KryuuFileRepository;
 
 class Version 
 {

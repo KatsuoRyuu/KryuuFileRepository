@@ -1,5 +1,5 @@
 <?php
-namespace FileRepository\Exception;
+namespace KryuuFileRepository\Exception;
 
 class RuntimeException extends \RuntimeException implements ExceptionInterface
 {

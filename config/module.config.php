@@ -1,8 +1,15 @@
 <?php
 
-namespace FileRepository;
+namespace KryuuFileRepository;
 
 return array(
+    "KryuuFileRepository" => array(
+        'params' => array(
+            'filerepository_folder'  => './data/filerepository/',
+            'default_is_active' => true,
+            'chmod'           => 0755,
+        ),
+    ),
     'controllers' => array(
         'invokables' => array(
             __NAMESPACE__ . '\Controller\File' => __NAMESPACE__ . '\Controller\FileController',
